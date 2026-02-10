@@ -9,6 +9,7 @@ high-quality poster-ready images with roads, water features, and parks.
 
 import argparse
 import asyncio
+import concurrent.futures
 import json
 import os
 import pickle
@@ -22,6 +23,14 @@ import matplotlib.colors as mcolors
 import matplotlib.pyplot as plt
 import numpy as np
 import osmnx as ox
+
+# Enable OSMnx caching
+try:
+    ox.settings.use_cache = True
+    ox.settings.log_console = False
+except AttributeError:
+    ox.config(use_cache=True, log_console=False)
+
 from geopandas import GeoDataFrame
 from geopy.geocoders import Nominatim
 from lat_lon_parser import parse
@@ -491,8 +500,10 @@ def create_poster(
     country_label=None,
     name_label=None,
     display_city=None,
+
     display_country=None,
     fonts=None,
+    quality="print",
 ):
     """
     Generate a complete map poster with roads, water, parks, and typography.
@@ -511,6 +522,7 @@ def create_poster(
         height: Poster height in inches (default: 16)
         country_label: Optional override for country text on poster
         _name_label: Optional override for city name (unused, reserved for future use)
+        quality: 'preview' (72 DPI) or 'print' (300 DPI) for output resolution
 
     Raises:
         RuntimeError: If street network data cannot be retrieved
@@ -522,6 +534,8 @@ def create_poster(
 
     print(f"\nGenerating map for {city}, {country}...")
 
+    compensated_dist = dist * (max(height, width) / min(height, width)) / 4  # To compensate for viewport crop
+
     # Progress bar for data fetching
     with tqdm(
         total=3,
@@ -529,33 +543,42 @@ def create_poster(
         unit="step",
         bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt}",
     ) as pbar:
-        # 1. Fetch Street Network
-        pbar.set_description("Downloading street network")
-        compensated_dist = dist * (max(height, width) / min(height, width)) / 4  # To compensate for viewport crop
-        g = fetch_graph(point, compensated_dist)
+        
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            # 1. Fetch Street Network
+            pbar.set_description("Starting parallel downloads...")
+            future_graph = executor.submit(fetch_graph, point, compensated_dist)
+            
+            # 2. Fetch Water Features
+            future_water = executor.submit(
+                fetch_features,
+                point,
+                compensated_dist,
+                {"natural": ["water", "bay", "strait"], "waterway": "riverbank"},
+                "water",
+            )
+            
+            # 3. Fetch Parks
+            future_parks = executor.submit(
+                fetch_features,
+                point,
+                compensated_dist,
+                {"leisure": "park", "landuse": "grass"},
+                "parks",
+            )
+            
+            # Wait for results
+            g = future_graph.result()
+            pbar.update(1)
+            
+            water = future_water.result()
+            pbar.update(1)
+            
+            parks = future_parks.result()
+            pbar.update(1)
+
         if g is None:
             raise RuntimeError("Failed to retrieve street network data.")
-        pbar.update(1)
-
-        # 2. Fetch Water Features
-        pbar.set_description("Downloading water features")
-        water = fetch_features(
-            point,
-            compensated_dist,
-            tags={"natural": ["water", "bay", "strait"], "waterway": "riverbank"},
-            name="water",
-        )
-        pbar.update(1)
-
-        # 3. Fetch Parks
-        pbar.set_description("Downloading parks/green spaces")
-        parks = fetch_features(
-            point,
-            compensated_dist,
-            tags={"leisure": "park", "landuse": "grass"},
-            name="parks",
-        )
-        pbar.update(1)
 
     print("✓ All data retrieved successfully!")
 
@@ -764,7 +787,7 @@ def create_poster(
 
     # DPI matters mainly for raster formats
     if fmt == "png":
-        save_kwargs["dpi"] = 300
+        save_kwargs["dpi"] = 72 if quality == "preview" else 300
 
     plt.savefig(output_file, format=fmt, **save_kwargs)
 

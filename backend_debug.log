@@ -987,3 +987,111 @@ KeyError: 'bg'
 2026-02-10 21:14:51,018 - backend.main - DEBUG - Loaded theme data keys: dict_keys(['name', 'description', 'bg', 'text', 'gradient_color', 'water', 'parks', 'road_motorway', 'road_primary', 'road_secondary', 'road_tertiary', 'road_residential', 'road_default'])
 2026-02-10 21:14:51,018 - backend.main - INFO - Generating poster to C:\Users\Damjan\source\repos\maptoposterapp\backend\outputs\munich_germany_530532fb.png with params: city='Munich' country='Germany' theme='terracotta' scale=12000 width=12.0 height=16.0
 2026-02-10 21:15:11,860 - backend.main - INFO - Poster generated successfully. Size: 9309986 bytes
+2026-02-10 21:39:37,019 - backend.main - INFO - Geocoding Munich, Germany
+2026-02-10 21:39:37,021 - backend.main - INFO - Loading theme: terracotta
+2026-02-10 21:39:37,022 - backend.main - DEBUG - Loaded theme data keys: dict_keys(['name', 'description', 'bg', 'text', 'gradient_color', 'water', 'parks', 'road_motorway', 'road_primary', 'road_secondary', 'road_tertiary', 'road_residential', 'road_default'])
+2026-02-10 21:39:37,022 - backend.main - INFO - Generating poster to C:\Users\Damjan\source\repos\maptoposterapp\backend\outputs\munich_germany_03ee9f87.png with params: city='Munich' country='Germany' theme='terracotta' scale=12000 width=12.0 height=16.0
+2026-02-10 21:40:07,401 - backend.main - INFO - Poster generated successfully. Size: 9309986 bytes
+2026-02-10 21:40:30,552 - backend.main - INFO - Geocoding Frankfurt, Germany
+2026-02-10 21:40:30,720 - urllib3.util.retry - DEBUG - Converted retries value: 2 -> Retry(total=2, connect=None, read=None, redirect=None, status=None)
+2026-02-10 21:40:30,721 - urllib3.util.retry - DEBUG - Converted retries value: 2 -> Retry(total=2, connect=None, read=None, redirect=None, status=None)
+2026-02-10 21:40:31,722 - geopy - DEBUG - Nominatim.geocode: https://nominatim.openstreetmap.org/search?q=Frankfurt%2C+Germany&format=json&limit=1
+2026-02-10 21:40:31,742 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): nominatim.openstreetmap.org:443
+2026-02-10 21:40:32,180 - urllib3.connectionpool - DEBUG - https://nominatim.openstreetmap.org:443 "GET /search?q=Frankfurt%2C+Germany&format=json&limit=1 HTTP/1.1" 200 442
+2026-02-10 21:40:32,183 - backend.main - INFO - Loading theme: autumn
+2026-02-10 21:40:32,185 - backend.main - DEBUG - Loaded theme data keys: dict_keys(['name', 'description', 'bg', 'text', 'gradient_color', 'water', 'parks', 'road_motorway', 'road_primary', 'road_secondary', 'road_tertiary', 'road_residential', 'road_default'])
+2026-02-10 21:40:32,185 - backend.main - INFO - Generating poster to C:\Users\Damjan\source\repos\maptoposterapp\backend\outputs\frankfurt_germany_1f04ea4b.png with params: city='Frankfurt' country='Germany' theme='autumn' scale=12000 width=12.0 height=16.0
+2026-02-10 21:40:32,407 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:40:33,169 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "GET /api/status HTTP/1.1" 200 180
+2026-02-10 21:40:33,191 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:40:37,675 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "POST /api/interpreter HTTP/1.1" 504 474
+2026-02-10 21:41:32,686 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:41:33,593 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "GET /api/status HTTP/1.1" 200 180
+2026-02-10 21:41:33,596 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:41:38,643 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "POST /api/interpreter HTTP/1.1" 504 474
+2026-02-10 21:42:33,646 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:42:34,539 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "GET /api/status HTTP/1.1" 200 179
+2026-02-10 21:42:34,542 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:42:39,627 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "POST /api/interpreter HTTP/1.1" 504 474
+2026-02-10 21:43:34,641 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:43:35,493 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "GET /api/status HTTP/1.1" 200 180
+2026-02-10 21:43:35,496 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:43:42,134 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "POST /api/interpreter HTTP/1.1" 200 None
+2026-02-10 21:44:13,323 - backend.main - INFO - Geocoding Frankfurt, Germany
+2026-02-10 21:44:13,353 - backend.main - INFO - Loading theme: emerald
+2026-02-10 21:44:13,355 - backend.main - DEBUG - Loaded theme data keys: dict_keys(['name', 'description', 'bg', 'text', 'gradient_color', 'water', 'parks', 'road_motorway', 'road_primary', 'road_secondary', 'road_tertiary', 'road_residential', 'road_default'])
+2026-02-10 21:44:13,356 - backend.main - INFO - Generating poster to C:\Users\Damjan\source\repos\maptoposterapp\backend\outputs\frankfurt_germany_6776143b.png with params: city='Frankfurt' country='Germany' theme='emerald' scale=12000 width=12.0 height=16.0
+2026-02-10 21:45:03,815 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:45:05,387 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "GET /api/status HTTP/1.1" 200 179
+2026-02-10 21:45:05,393 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:45:09,119 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "POST /api/interpreter HTTP/1.1" 200 50151
+2026-02-10 21:45:09,646 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:45:10,625 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "GET /api/status HTTP/1.1" 200 208
+2026-02-10 21:45:10,828 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:45:15,813 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "POST /api/interpreter HTTP/1.1" 504 474
+2026-02-10 21:45:17,735 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:45:18,732 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "GET /api/status HTTP/1.1" 200 210
+2026-02-10 21:45:18,736 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:45:21,355 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "POST /api/interpreter HTTP/1.1" 200 None
+2026-02-10 21:45:40,557 - backend.main - INFO - Poster generated successfully. Size: 6372323 bytes
+2026-02-10 21:46:29,483 - backend.main - INFO - Geocoding Bjelovar, Croatia
+2026-02-10 21:46:29,522 - urllib3.util.retry - DEBUG - Converted retries value: 2 -> Retry(total=2, connect=None, read=None, redirect=None, status=None)
+2026-02-10 21:46:29,523 - urllib3.util.retry - DEBUG - Converted retries value: 2 -> Retry(total=2, connect=None, read=None, redirect=None, status=None)
+2026-02-10 21:46:30,524 - geopy - DEBUG - Nominatim.geocode: https://nominatim.openstreetmap.org/search?q=Bjelovar%2C+Croatia&format=json&limit=1
+2026-02-10 21:46:30,525 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): nominatim.openstreetmap.org:443
+2026-02-10 21:46:30,872 - urllib3.connectionpool - DEBUG - https://nominatim.openstreetmap.org:443 "GET /search?q=Bjelovar%2C+Croatia&format=json&limit=1 HTTP/1.1" 200 461
+2026-02-10 21:46:30,876 - backend.main - INFO - Loading theme: emerald
+2026-02-10 21:46:30,878 - backend.main - DEBUG - Loaded theme data keys: dict_keys(['name', 'description', 'bg', 'text', 'gradient_color', 'water', 'parks', 'road_motorway', 'road_primary', 'road_secondary', 'road_tertiary', 'road_residential', 'road_default'])
+2026-02-10 21:46:30,878 - backend.main - INFO - Generating poster to C:\Users\Damjan\source\repos\maptoposterapp\backend\outputs\bjelovar_croatia_14b50ea2.png with params: city='Bjelovar' country='Croatia' theme='emerald' scale=12000 width=12.0 height=16.0
+2026-02-10 21:46:31,494 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:46:31,781 - backend.main - INFO - Poster generated successfully. Size: 6372323 bytes
+2026-02-10 21:46:32,380 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "GET /api/status HTTP/1.1" 200 180
+2026-02-10 21:46:32,384 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:46:37,734 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "POST /api/interpreter HTTP/1.1" 504 474
+2026-02-10 21:47:32,737 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:47:33,376 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "GET /api/status HTTP/1.1" 200 180
+2026-02-10 21:47:33,380 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:47:37,700 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "POST /api/interpreter HTTP/1.1" 504 474
+2026-02-10 21:48:32,702 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:48:33,261 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "GET /api/status HTTP/1.1" 200 180
+2026-02-10 21:48:33,264 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:48:35,810 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "POST /api/interpreter HTTP/1.1" 200 None
+2026-02-10 21:48:42,534 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:48:43,367 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "GET /api/status HTTP/1.1" 200 205
+2026-02-10 21:48:43,370 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:48:45,199 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "POST /api/interpreter HTTP/1.1" 200 14938
+2026-02-10 21:48:45,744 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:48:46,320 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "GET /api/status HTTP/1.1" 200 215
+2026-02-10 21:48:46,323 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): overpass-api.de:443
+2026-02-10 21:48:47,703 - urllib3.connectionpool - DEBUG - https://overpass-api.de:443 "POST /api/interpreter HTTP/1.1" 200 None
+2026-02-10 21:48:52,025 - backend.main - INFO - Poster generated successfully. Size: 2385950 bytes
+2026-02-10 21:49:04,792 - backend.main - INFO - Geocoding Munich, Germany
+2026-02-10 21:49:04,793 - backend.main - INFO - Loading theme: terracotta
+2026-02-10 21:49:04,794 - backend.main - DEBUG - Loaded theme data keys: dict_keys(['name', 'description', 'bg', 'text', 'gradient_color', 'water', 'parks', 'road_motorway', 'road_primary', 'road_secondary', 'road_tertiary', 'road_residential', 'road_default'])
+2026-02-10 21:49:04,794 - backend.main - INFO - Generating poster to C:\Users\Damjan\source\repos\maptoposterapp\backend\outputs\munich_germany_55602360_preview.png with params: city='Munich' country='Germany' theme='terracotta' scale=12000 width=12.0 height=16.0 quality='preview'
+2026-02-10 21:49:27,540 - backend.main - INFO - Geocoding Bjelovar, Croatia
+2026-02-10 21:49:27,573 - backend.main - INFO - Loading theme: neon_cyberpunk
+2026-02-10 21:49:27,574 - backend.main - DEBUG - Loaded theme data keys: dict_keys(['name', 'description', 'bg', 'text', 'gradient_color', 'water', 'parks', 'road_motorway', 'road_primary', 'road_secondary', 'road_tertiary', 'road_residential', 'road_default'])
+2026-02-10 21:49:27,575 - backend.main - INFO - Generating poster to C:\Users\Damjan\source\repos\maptoposterapp\backend\outputs\bjelovar_croatia_8b92a7f9_preview.png with params: city='Bjelovar' country='Croatia' theme='neon_cyberpunk' scale=12000 width=12.0 height=16.0 quality='preview'
+2026-02-10 21:49:30,755 - backend.main - INFO - Poster generated successfully. Size: 445011 bytes
+2026-02-10 21:49:34,211 - backend.main - INFO - Poster generated successfully. Size: 1240985 bytes
+2026-02-10 21:50:07,081 - backend.main - INFO - Geocoding Bjelovar, Croatia
+2026-02-10 21:50:07,082 - backend.main - INFO - Loading theme: neon_cyberpunk
+2026-02-10 21:50:07,084 - backend.main - DEBUG - Loaded theme data keys: dict_keys(['name', 'description', 'bg', 'text', 'gradient_color', 'water', 'parks', 'road_motorway', 'road_primary', 'road_secondary', 'road_tertiary', 'road_residential', 'road_default'])
+2026-02-10 21:50:07,084 - backend.main - INFO - Generating poster to C:\Users\Damjan\source\repos\maptoposterapp\backend\outputs\bjelovar_croatia_daa1db30_preview.png with params: city='Bjelovar' country='Croatia' theme='neon_cyberpunk' scale=12000 width=12.0 height=16.0 quality='preview'
+2026-02-10 21:50:10,217 - backend.main - INFO - Poster generated successfully. Size: 445011 bytes
+2026-02-10 21:50:10,790 - backend.main - INFO - Geocoding Munich, Germany
+2026-02-10 21:50:10,791 - backend.main - INFO - Loading theme: terracotta
+2026-02-10 21:50:10,792 - backend.main - DEBUG - Loaded theme data keys: dict_keys(['name', 'description', 'bg', 'text', 'gradient_color', 'water', 'parks', 'road_motorway', 'road_primary', 'road_secondary', 'road_tertiary', 'road_residential', 'road_default'])
+2026-02-10 21:50:10,792 - backend.main - INFO - Generating poster to C:\Users\Damjan\source\repos\maptoposterapp\backend\outputs\munich_germany_6feee2f9_preview.png with params: city='Munich' country='Germany' theme='terracotta' scale=12000 width=12.0 height=16.0 quality='preview'
+2026-02-10 21:50:42,112 - backend.main - INFO - Poster generated successfully. Size: 1240985 bytes
+2026-02-10 21:50:42,121 - backend.main - INFO - Geocoding Munich, Germany
+2026-02-10 21:50:42,122 - backend.main - INFO - Loading theme: terracotta
+2026-02-10 21:50:42,123 - backend.main - DEBUG - Loaded theme data keys: dict_keys(['name', 'description', 'bg', 'text', 'gradient_color', 'water', 'parks', 'road_motorway', 'road_primary', 'road_secondary', 'road_tertiary', 'road_residential', 'road_default'])
+2026-02-10 21:50:42,123 - backend.main - INFO - Generating poster to C:\Users\Damjan\source\repos\maptoposterapp\backend\outputs\munich_germany_7d865e6f.png with params: city='Munich' country='Germany' theme='terracotta' scale=12000 width=12.0 height=16.0 quality='print'
+2026-02-10 21:50:43,671 - backend.main - INFO - Geocoding Frankfurt, Germany
+2026-02-10 21:50:43,676 - backend.main - INFO - Loading theme: neon_cyberpunk
+2026-02-10 21:50:43,685 - backend.main - DEBUG - Loaded theme data keys: dict_keys(['name', 'description', 'bg', 'text', 'gradient_color', 'water', 'parks', 'road_motorway', 'road_primary', 'road_secondary', 'road_tertiary', 'road_residential', 'road_default'])
+2026-02-10 21:50:43,687 - backend.main - INFO - Generating poster to C:\Users\Damjan\source\repos\maptoposterapp\backend\outputs\frankfurt_germany_dca62023_preview.png with params: city='Frankfurt' country='Germany' theme='neon_cyberpunk' scale=12000 width=12.0 height=16.0 quality='preview'
+2026-02-10 21:51:04,247 - backend.main - INFO - Poster generated successfully. Size: 1020458 bytes
+2026-02-10 21:51:17,433 - backend.main - INFO - Poster generated successfully. Size: 9309986 bytes

@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     // Fetch available themes
-    axios.get('http://127.0.0.1:8000/themes')
+    axios.get('/api/themes')
       .then(response => {
         setThemes(response.data.themes)
       })
@@ -23,24 +23,25 @@ function App() {
       })
   }, [])
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const generateMap = async (quality = 'preview') => {
     setLoading(true)
     setError(null)
-    setPosterUrl(null)
+    // Don't clear posterUrl if generating high-res from preview
+    if (quality === 'preview') setPosterUrl(null)
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/generate', {
+      const response = await axios.post('/api/generate', {
         city,
         country,
         theme,
         width: 12,
         height: 16,
-        scale: 12000 // Default scale for now
+        scale: 12000,
+        quality
       })
 
       if (response.data.url) {
-        setPosterUrl(`http://127.0.0.1:8000${response.data.url}`)
+        setPosterUrl(response.data.url)
       }
     } catch (err) {
       console.error("Generation failed", err)
@@ -48,6 +49,11 @@ function App() {
     } finally {
       setLoading(false)
     }
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    generateMap('preview')
   }
 
   return (
@@ -98,8 +104,8 @@ function App() {
               </select>
             </div>
 
-            <button type="submit" disabled={loading}>
-              {loading ? 'Generating...' : 'Generate Poster'}
+            <button type="submit" disabled={loading} className="btn-primary">
+              {loading ? 'Generating...' : 'Generate Preview'}
             </button>
 
             {error && <p className="error">{error}</p>}
@@ -110,7 +116,17 @@ function App() {
           {posterUrl ? (
             <div className="poster-container">
               <img src={posterUrl} alt={`Map poster of ${city}`} />
-              <a href={posterUrl} download className="download-btn">Download High-Res</a>
+              <div className="actions">
+                <a href={posterUrl} download className="btn-secondary">Download Preview</a>
+                <button
+                  onClick={() => generateMap('print')}
+                  disabled={loading}
+                  className="btn-primary"
+                  style={{ marginTop: '1rem' }}
+                >
+                  {loading ? 'Processing...' : 'Generate High-Res Print'}
+                </button>
+              </div>
             </div>
           ) : (
             <div className="placeholder">

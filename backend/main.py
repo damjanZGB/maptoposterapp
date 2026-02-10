@@ -64,6 +64,7 @@ class PosterRequest(BaseModel):
     scale: int = 12000 # Distance/Radius in meters (default from CLI examples usually 12000 for large cities)
     width: float = 12.0
     height: float = 16.0
+    quality: str = "preview"
 
 @app.get("/themes")
 def get_themes():
@@ -79,7 +80,8 @@ def generate_poster(request: PosterRequest):
         lat_lon = get_coordinates(request.city, request.country)
         
         # 2. Generate Filename
-        filename = f"{request.city.lower()}_{request.country.lower()}_{uuid.uuid4().hex[:8]}.png"
+        quality_suffix = "_preview" if request.quality == "preview" else ""
+        filename = f"{request.city.lower()}_{request.country.lower()}_{uuid.uuid4().hex[:8]}{quality_suffix}.png"
         output_path = os.path.join(OUTPUT_DIR, filename)
         
         # 3. Load Theme
@@ -107,6 +109,7 @@ def generate_poster(request: PosterRequest):
             output_format="png",
             width=request.width,
             height=request.height,
+            quality=request.quality,
         )
         
         if not os.path.exists(output_path):
