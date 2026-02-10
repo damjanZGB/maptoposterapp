@@ -110,28 +110,52 @@ select:focus {
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
 }
 
-button {
+button,
+.btn-primary,
+.btn-secondary {
   width: 100%;
   padding: 1rem;
-  background: var(--primary-color);
-  color: white;
-  border: none;
   border-radius: 0.5rem;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
+  transition: background 0.2s, transform 0.1s, color 0.2s;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  box-sizing: border-box;
 }
 
-button:hover {
+.btn-primary {
+  background: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
   background: var(--primary-hover);
 }
 
-button:active {
+.btn-secondary {
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  margin-top: 0;
+}
+
+.btn-secondary:hover {
+  background: rgba(59, 130, 246, 0.1);
+  text-decoration: none;
+}
+
+button:active,
+.btn-primary:active,
+.btn-secondary:active {
   transform: scale(0.98);
 }
 
-button:disabled {
+button:disabled,
+.btn-primary:disabled {
   opacity: 0.7;
   cursor: not-allowed;
 }
@@ -171,16 +195,13 @@ button:disabled {
   text-align: center;
 }
 
-.download-btn {
-  display: inline-block;
-  margin-top: 1rem;
-  color: var(--primary-color);
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.download-btn:hover {
-  text-decoration: underline;
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 400px;
+  /* Prevent buttons from being too wide on large screens */
 }
 
 @media (max-width: 768px) {
