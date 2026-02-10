@@ -2,20 +2,16 @@ version: '3.8'
 
 services:
   backend:
+    image: daisys-maps-backend:latest
     build: ./backend
     container_name: maptoposter-backend
+    restart: always
     ports:
       - "8000:8000"
     volumes:
       - ./backend/outputs:/app/backend/outputs
-      - ./backend/cache:/app/cache  # Persist OSMnx cache
+      - ./backend/cache:/app/cache
     environment:
       - PYTHONUNBUFFERED=1
-
-  frontend:
-    build: ./frontend
-    container_name: maptoposter-frontend
-    ports:
-      - "80:80"
-    depends_on:
-      - backend
+      # Add CORS_ORIGINS here if needed for split hosting
+      # - CORS_ORIGINS=http://daisysmaps.com,https://daisysmaps.com
