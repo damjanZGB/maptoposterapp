@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     // Fetch available themes
-    axios.get('http://localhost:8000/themes')
+    axios.get('http://127.0.0.1:8000/themes')
       .then(response => {
         setThemes(response.data.themes)
       })
@@ -30,7 +30,7 @@ function App() {
     setPosterUrl(null)
 
     try {
-      const response = await axios.post('http://localhost:8000/generate', {
+      const response = await axios.post('http://127.0.0.1:8000/generate', {
         city,
         country,
         theme,
@@ -40,7 +40,7 @@ function App() {
       })
 
       if (response.data.url) {
-        setPosterUrl(`http://localhost:8000${response.data.url}`)
+        setPosterUrl(`http://127.0.0.1:8000${response.data.url}`)
       }
     } catch (err) {
       console.error("Generation failed", err)

@@ -9,8 +9,20 @@ import logging
 from pathlib import Path
 import uuid
 
+import matplotlib
+matplotlib.use('Agg') # Force non-interactive backend
+import matplotlib.pyplot as plt
+
 # Setup logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler("backend_debug.log"),
+        logging.StreamHandler()
+    ]
+)
+logging.getLogger('matplotlib').setLevel(logging.WARNING)
 logger = logging.getLogger(__name__)
 
 # Add root directory to sys.path to import maptoposter modules
@@ -19,7 +31,8 @@ sys.path.append(ROOT_DIR)
 
 # Import maptoposter functions
 try:
-    from create_map_poster import create_poster, get_coordinates, get_available_themes
+    import create_map_poster
+    from create_map_poster import create_poster, get_coordinates, get_available_themes, load_theme
 except ImportError as e:
     logger.error(f"Failed to import maptoposter modules: {e}")
     sys.exit(1)
@@ -69,8 +82,22 @@ def generate_poster(request: PosterRequest):
         filename = f"{request.city.lower()}_{request.country.lower()}_{uuid.uuid4().hex[:8]}.png"
         output_path = os.path.join(OUTPUT_DIR, filename)
         
-        # 3. Create Poster
-        logger.info(f"Generating poster to {output_path}")
+        # 3. Load Theme
+        logger.info(f"Loading theme: {request.theme}")
+        theme_data = load_theme(request.theme)
+        logger.debug(f"Loaded theme data keys: {theme_data.keys()}")
+        if 'bg' not in theme_data:
+            logger.error(f"Theme data is missing 'bg' key! Data: {theme_data}")
+        create_map_poster.THEME = theme_data
+
+        # 4. Create Poster
+        logger.info(f"Generating poster to {output_path} with params: {request}")
+        
+        # Verify output dir exists
+        if not os.path.exists(OUTPUT_DIR):
+            logger.error(f"Output directory does not exist: {OUTPUT_DIR}")
+            os.makedirs(OUTPUT_DIR, exist_ok=True)
+
         create_poster(
             city=request.city,
             country=request.country,
@@ -83,8 +110,12 @@ def generate_poster(request: PosterRequest):
         )
         
         if not os.path.exists(output_path):
+            logger.error(f"File was not created at {output_path}")
             raise HTTPException(status_code=500, detail="Poster generation failed to create output file.")
             
+        file_size = os.path.getsize(output_path)
+        logger.info(f"Poster generated successfully. Size: {file_size} bytes")
+        
         return {"filename": filename, "url": f"/posters/{filename}"}
 
     except Exception as e:
