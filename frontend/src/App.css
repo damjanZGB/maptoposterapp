@@ -205,11 +205,34 @@ button:disabled,
 }
 
 @media (max-width: 768px) {
+  #root {
+    padding: 1rem;
+  }
+
+  .container {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
   main {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
   .controls {
     position: static;
+    padding: 1.5rem;
+  }
+
+  .preview {
+    min-height: 400px;
+  }
+
+  .actions {
+    max-width: 100%;
   }
 }

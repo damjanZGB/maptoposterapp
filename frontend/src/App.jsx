@@ -64,6 +64,27 @@ function App() {
     generateMap('preview')
   }
 
+  const handleDownload = async () => {
+    if (!posterUrl) return
+    try {
+      const response = await fetch(posterUrl)
+      const blob = await response.blob()
+      const url = window.URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = url
+      // Extract filename
+      const filename = posterUrl.split('/').pop() || `map-${city}-${country}.png`
+      link.setAttribute('download', filename)
+      document.body.appendChild(link)
+      link.click()
+      link.remove()
+      window.URL.revokeObjectURL(url)
+    } catch (err) {
+      console.error("Download failed", err)
+      setError("Failed to download. Please try again.")
+    }
+  }
+
   return (
     <div className="container">
       <header>
@@ -125,7 +146,7 @@ function App() {
             <div className="poster-container">
               <img src={posterUrl} alt={`Map poster of ${city}`} />
               <div className="actions">
-                <a href={posterUrl} download className="btn-secondary">Download Preview</a>
+                <button onClick={handleDownload} className="btn-secondary">Download Preview</button>
                 <button
                   onClick={() => generateMap('print')}
                   disabled={loading}
