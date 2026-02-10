@@ -45,7 +45,11 @@ function App() {
       })
 
       if (response.data.url) {
-        setPosterUrl(response.data.url)
+        // Construct full URL for split hosting (frontend on different domain than backend)
+        const fullUrl = response.data.url.startsWith('http')
+          ? response.data.url
+          : `${API_BASE_URL}${response.data.url}`;
+        setPosterUrl(fullUrl)
       }
     } catch (err) {
       console.error("Generation failed", err)
