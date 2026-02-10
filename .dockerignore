@@ -1,0 +1,21 @@
+# Version control
+.git
+.gitignore
+
+# Python
+backend/venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Frontend (Backend-only build)
+frontend/
+node_modules/
+
+# Outputs
+backend/outputs/
+backend_debug.log
+
+# VS Code
+.vscode/
