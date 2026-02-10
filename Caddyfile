@@ -1,0 +1,7 @@
+# Replace 'api.daisy.voyage' with your actual backend domain
+# If you don't have a backend domain, you can use the IP but won't get a valid cert.
+# For now, we assume api.daisy.voyage
+
+api.daisy.voyage {
+    reverse_proxy backend:8000
+}

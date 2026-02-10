@@ -14,6 +14,23 @@ services:
       - ./backend/outputs:/app/backend/outputs
       - ./backend/cache:/app/cache
     environment:
-      - PYTHONUNBUFFERED=1
       # Add CORS_ORIGINS here if needed for split hosting
+      # - CORS_ORIGINS=http://daisysmaps.com,https://daisysmaps.com
+
+  caddy:
+    image: caddy:latest
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - backend
+
+volumes:
+  caddy_data:
+  caddy_config:
       # - CORS_ORIGINS=http://daisysmaps.com,https://daisysmaps.com
