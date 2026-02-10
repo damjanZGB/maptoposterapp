@@ -24,8 +24,8 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    command: caddy reverse-proxy --from https://api.restrike.cloud --to backend:8000
     volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
     depends_on:
