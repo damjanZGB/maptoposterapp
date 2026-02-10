@@ -37,13 +37,12 @@ except ImportError as e:
     logger.error(f"Failed to import maptoposter modules: {e}")
     sys.exit(1)
 
-app = FastAPI(title="MapToPoster API")
+app = FastAPI(title="dAisy's maps API")
 
 # CORS Setup
-origins = [
-    "http://localhost:5173",  # Vite dev server
-    "http://127.0.0.1:5173",
-]
+# Allow all origins for simplicity in split hosting, or use env var
+allowed_origins = os.getenv("CORS_ORIGINS", "*").split(",")
+origins = [origin.strip() for origin in allowed_origins]
 
 app.add_middleware(
     CORSMiddleware,

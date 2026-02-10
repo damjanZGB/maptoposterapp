@@ -11,9 +11,13 @@ function App() {
   const [posterUrl, setPosterUrl] = useState(null)
   const [error, setError] = useState(null)
 
+  // Use environment variable for API URL in production (split hosting)
+  // Fallback to relative path for local dev (via proxy) or Docker compose
+  const API_BASE_URL = import.meta.env.VITE_API_URL || '/api'
+
   useEffect(() => {
     // Fetch available themes
-    axios.get('/api/themes')
+    axios.get(`${API_BASE_URL}/themes`)
       .then(response => {
         setThemes(response.data.themes)
       })
@@ -30,7 +34,7 @@ function App() {
     if (quality === 'preview') setPosterUrl(null)
 
     try {
-      const response = await axios.post('/api/generate', {
+      const response = await axios.post(`${API_BASE_URL}/generate`, {
         city,
         country,
         theme,
@@ -59,7 +63,7 @@ function App() {
   return (
     <div className="container">
       <header>
-        <h1>MapToPoster</h1>
+        <h1>dAisy's maps</h1>
         <p>Create beautiful minimalist map posters.</p>
       </header>
 

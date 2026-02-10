@@ -1,4 +1,4 @@
-# MapToPoster Web App
+# dAisy's maps
 
 This is a web application wrapper for the [maptoposter](https://github.com/originalankur/maptoposter) tool.
 
